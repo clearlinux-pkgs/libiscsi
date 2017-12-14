@@ -1,0 +1,6 @@
+Configure miss: gcry_control in -lgcrypt
+Configure miss: sin_len in sock
+Configure miss: sys filio.h
+Configure miss: iSER support
+Configure miss: whether libcunit is available
+Configure miss: struct CU_SuiteInfo.pSetUpFunc
