@@ -4,7 +4,7 @@
 #
 Name     : libiscsi
 Version  : 1.18.0
-Release  : 3
+Release  : 4
 URL      : https://github.com/sahlberg/libiscsi/archive/1.18.0.tar.gz
 Source0  : https://github.com/sahlberg/libiscsi/archive/1.18.0.tar.gz
 Summary  : iSCSI initiator library
