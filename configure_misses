@@ -1,4 +1,3 @@
-Configure miss: gcry_control in -lgcrypt
 Configure miss: sin_len in sock
 Configure miss: sys filio.h
 Configure miss: iSER support
