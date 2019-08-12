@@ -4,7 +4,7 @@
 #
 Name     : libiscsi
 Version  : 1.19.0
-Release  : 6
+Release  : 7
 URL      : https://github.com/sahlberg/libiscsi/archive/1.19.0/libiscsi-1.19.0.tar.gz
 Source0  : https://github.com/sahlberg/libiscsi/archive/1.19.0/libiscsi-1.19.0.tar.gz
 Summary  : iSCSI initiator library
@@ -75,7 +75,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1564522989
+export SOURCE_DATE_EPOCH=1565638034
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -95,13 +95,15 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1564522989
+export SOURCE_DATE_EPOCH=1565638034
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libiscsi
 cp COPYING %{buildroot}/usr/share/package-licenses/libiscsi/COPYING
 cp LICENCE-GPL-2.txt %{buildroot}/usr/share/package-licenses/libiscsi/LICENCE-GPL-2.txt
 cp LICENCE-LGPL-2.1.txt %{buildroot}/usr/share/package-licenses/libiscsi/LICENCE-LGPL-2.1.txt
 %make_install
+## Remove excluded files
+rm -f %{buildroot}/usr/bin/ld_iscsi.so
 
 %files
 %defattr(-,root,root,-)
@@ -113,7 +115,6 @@ cp LICENCE-LGPL-2.1.txt %{buildroot}/usr/share/package-licenses/libiscsi/LICENCE
 /usr/bin/iscsi-perf
 /usr/bin/iscsi-readcapacity16
 /usr/bin/iscsi-swp
-/usr/bin/ld_iscsi.so
 
 %files dev
 %defattr(-,root,root,-)
