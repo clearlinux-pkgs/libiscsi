@@ -4,7 +4,7 @@
 #
 Name     : libiscsi
 Version  : 1.19.0
-Release  : 7
+Release  : 8
 URL      : https://github.com/sahlberg/libiscsi/archive/1.19.0/libiscsi-1.19.0.tar.gz
 Source0  : https://github.com/sahlberg/libiscsi/archive/1.19.0/libiscsi-1.19.0.tar.gz
 Summary  : iSCSI initiator library
@@ -69,20 +69,21 @@ man components for the libiscsi package.
 
 %prep
 %setup -q -n libiscsi-1.19.0
+cd %{_builddir}/libiscsi-1.19.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1565638034
+export SOURCE_DATE_EPOCH=1604359188
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %autogen --disable-static
 make  %{?_smp_mflags}
@@ -92,15 +93,15 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1565638034
+export SOURCE_DATE_EPOCH=1604359188
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libiscsi
-cp COPYING %{buildroot}/usr/share/package-licenses/libiscsi/COPYING
-cp LICENCE-GPL-2.txt %{buildroot}/usr/share/package-licenses/libiscsi/LICENCE-GPL-2.txt
-cp LICENCE-LGPL-2.1.txt %{buildroot}/usr/share/package-licenses/libiscsi/LICENCE-LGPL-2.1.txt
+cp %{_builddir}/libiscsi-1.19.0/COPYING %{buildroot}/usr/share/package-licenses/libiscsi/f12cd6fb8d937bce8255817b96793d0d1ea6f997
+cp %{_builddir}/libiscsi-1.19.0/LICENCE-GPL-2.txt %{buildroot}/usr/share/package-licenses/libiscsi/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/libiscsi-1.19.0/LICENCE-LGPL-2.1.txt %{buildroot}/usr/share/package-licenses/libiscsi/01a6b4bf79aca9b556822601186afab86e8c4fbf
 %make_install
 ## Remove excluded files
 rm -f %{buildroot}/usr/bin/ld_iscsi.so
@@ -130,9 +131,9 @@ rm -f %{buildroot}/usr/bin/ld_iscsi.so
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/libiscsi/COPYING
-/usr/share/package-licenses/libiscsi/LICENCE-GPL-2.txt
-/usr/share/package-licenses/libiscsi/LICENCE-LGPL-2.1.txt
+/usr/share/package-licenses/libiscsi/01a6b4bf79aca9b556822601186afab86e8c4fbf
+/usr/share/package-licenses/libiscsi/4cc77b90af91e615a64ae04893fdffa7939db84c
+/usr/share/package-licenses/libiscsi/f12cd6fb8d937bce8255817b96793d0d1ea6f997
 
 %files man
 %defattr(0644,root,root,0755)
